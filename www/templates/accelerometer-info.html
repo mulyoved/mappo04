@@ -1,0 +1,41 @@
+<ion-view view-title="Accelerometer Info">
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        Acceleration
+      </div>
+      <div class="item item-text-wrap" ng-show="msg">
+        {{vm.msg}}
+      </div>
+      <div class="item">
+        <strong>X</strong> &nbsp {{vm.motion.x}}
+      </div>
+      <div class="item">
+        <strong>Y</strong> &nbsp {{vm.motion.y}}
+      </div>
+
+      <div class="item">
+        <strong>Z</strong> &nbsp {{vm.motion.z}}
+      </div>
+      <div class="item">
+        <strong>Time</strong> &nbsp {{vm.motion.timestamp}}
+      </div>
+    </div>
+
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="vm.getAcceleration()">
+        Get Device Motion
+      </button>
+
+      <div class="button-bar">
+        <button class="button button-stable" ng-click="vm.watchAcceleration()">
+          Watch
+        </button>
+
+        <button class="button button-assertive" ng-click="vm.clearWatch()">
+          Clear
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
