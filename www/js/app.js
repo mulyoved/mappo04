@@ -20,6 +20,51 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     });
   })
 
+  .factory('indooratlas', ['$q', function ($q) {
+
+    return {
+      getCurrentAcceleration: function () {
+        var q = $q.defer();
+
+        navigator.indooratlas.getCurrentNavPosition(function (result) {
+          q.resolve(result);
+        }, function (err) {
+          q.reject(err);
+        });
+
+        return q.promise;
+      },
+
+      watchAcceleration: function (options) {
+        var q = $q.defer();
+
+        var watchID = navigator.indooratlas.watchNavPosition(function (result) {
+          q.notify(result);
+        }, function (err) {
+          q.reject(err);
+        }, options);
+
+        q.promise.cancel = function () {
+          console.log('q.promise.cancel');
+          navigator.indooratlas.clearWatch(watchID);
+        };
+
+        q.promise.clearWatch = function (id) {
+          console.log('q.promise.clearWatch');
+          navigator.indooratlas.clearWatch(id || watchID);
+        };
+
+        q.promise.watchID = watchID;
+
+        return q.promise;
+      },
+
+      clearWatch: function (watchID) {
+        return navigator.indooratlas.clearWatch(watchID);
+      }
+    }
+  }])
+
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
@@ -44,7 +89,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         url: "/position-info",
         views: {
           'menuContent': {
-            templateUrl: "templates/position-info.html"
+            templateUrl: "templates/position-info.html",
+            controller: 'PositionInfoCtrl as vm',
           }
         }
       })

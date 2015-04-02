@@ -1,5 +1,60 @@
 <ion-view view-title="Position Info">
   <ion-content>
-    <h1>Position Info</h1>
+    <div class="card">
+      <div class="item item-divider">
+        Acceleration
+      </div>
+      <div class="item item-text-wrap" ng-show="msg">
+        {{vm.msg}}
+      </div>
+      <div class="item">
+        <strong>roundtrip</strong> &nbsp {{vm.motion.roundtrip}}
+      </div>
+      <div class="item">
+        <strong>lat</strong> &nbsp {{vm.motion.lat}}
+      </div>
+      <div class="item">
+        <strong>lon</strong> &nbsp {{vm.motion.lon}}
+      </div>
+      <div class="item">
+        <strong>timestamp</strong> &nbsp {{vm.motion.timestamp}}
+      </div>
+      <div class="item">
+        <strong>x</strong> &nbsp {{vm.motion.x}}
+      </div>
+      <div class="item">
+        <strong>y</strong> &nbsp {{vm.motion.y}}
+      </div>
+      <div class="item">
+        <strong>i</strong> &nbsp {{vm.motion.i}}
+      </div>
+      <div class="item">
+        <strong>j</strong> &nbsp {{vm.motion.j}}
+      </div>
+      <div class="item">
+        <strong>heading</strong> &nbsp {{vm.motion.heading}}
+      </div>
+      <div class="item">
+        <strong>uncertainty</strong> &nbsp {{vm.motion.uncertainty}}
+      </div>
+      <div class="item">
+        <strong>calibrationState</strong> &nbsp {{vm.motion.calibrationState}}
+      </div>
+      <div class="item">
+        <strong>calibration</strong> &nbsp {{vm.motion.calibration}}
+      </div>
+    </div>
+
+    <div class="padding">
+      <div class="button-bar">
+        <button class="button button-stable" ng-click="vm.watchAcceleration()">
+          Watch
+        </button>
+
+        <button class="button button-assertive" ng-click="vm.clearWatch()">
+          Clear
+        </button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

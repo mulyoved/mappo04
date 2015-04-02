@@ -1,0 +1,13 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Calibration</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div ng-if="!vm.gotLocation">
+            <p>Wait for position Info, please move your phone</p>
+        </div>
+        <div ng-if="vm.gotLocation">
+            <p>Calibration Progress: {{vm.motion.calibration}}%</p>
+        </div>
+    </ion-content>
+</ion-modal-view>
