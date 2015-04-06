@@ -1,9 +1,20 @@
 <ion-view view-title="Setup">
   <ion-content>
     <div class="list">
+      <fancy-select
+              header-text="Select Map"
+              allow-empty='false'
+              value="vm.selected_map.value"
+              text="vm.selected_map.text"
+              items="vm.mapsList"
+              callback="vm.selectedMap(id)">
+      </fancy-select>
+
+      <!--
       <label class="item">
         <button class="button button-block button-positive" ng-click="vm.runtest()">Run Test</button>
       </label>
+      -->
     </div>
   </ion-content>
 </ion-view>

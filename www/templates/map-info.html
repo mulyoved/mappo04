@@ -1,0 +1,36 @@
+<ion-view view-title="Map Info">
+  <ion-content>
+    <div class="card">
+      <div class="item">
+        <strong>Short Code: </strong> &nbsp {{vm.map["Short Code"]}}
+      </div>
+      <div class="item">
+        <strong>Venue Name: </strong> &nbsp {{vm.map["Venue Name"]}}
+      </div>
+      <div class="item">
+        <strong>Floor Name: </strong> &nbsp {{vm.map["Floor Name"]}}
+      </div>
+      <div class="item">
+        <strong>Notes: </strong> &nbsp {{vm.map["Notes"]}}
+      </div>
+      <div class="item">
+        <strong>Address: </strong> &nbsp {{vm.map["Address"]}}
+      </div>
+      <div class="item">
+        <strong>Mappo Plan: </strong> &nbsp {{vm.map["FloorPlanId"] | limitTo: 8}}
+      </div>
+      <div class="item">
+        <strong>Mappo Floor: </strong> &nbsp {{vm.map["FloorId"] | limitTo: 8}}
+      </div>
+      <div class="item">
+        <strong>Mappo ID: </strong> &nbsp {{vm.map["VenueID"] | limitTo: 8}}
+      </div>
+      <div class="item">
+        <strong>Map File Name: </strong> &nbsp {{vm.map["Map File Name"]}}
+      </div>
+      <div class="item">
+        <strong>Last Calibrated: </strong> &nbsp {{vm.map["Last Calibrated"]}}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

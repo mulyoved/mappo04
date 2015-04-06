@@ -20,6 +20,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     });
   })
 
+  .factory('mapInfoStorage', ['$window', function($window) {
+    var key = 'selected-map';
+    return {
+      set: function(mapId) {
+        $window.localStorage[key] = mapId;
+      },
+      get: function() {
+        var mapId = $window.localStorage[key];
+        var found = null;
+        if (mapId) {
+          angular.forEach(global_mapData, function(map) {
+            var id = map["Short Code"];
+            if (id === mapId) {
+              found = map;
+            }
+          });
+        }
+
+        if (found) {
+          return found;
+        }
+        else {
+          return global_mapData[0];
+        }
+      }
+    }
+  }])
+
   .factory('indooratlas', ['$q', function ($q) {
 
     return {
@@ -35,12 +63,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         return q.promise;
       },
 
-      watchAcceleration: function (options) {
+      watchAcceleration: function(options) {
         var q = $q.defer();
 
-        var watchID = navigator.indooratlas.watchNavPosition(function (result) {
+        var watchID = navigator.indooratlas.watchNavPosition(function(result) {
           q.notify(result);
-        }, function (err) {
+        }, function(err) {
           q.reject(err);
         }, options);
 
@@ -76,6 +104,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       })
 
       .state('app.map', {
+        cache: false,
         url: "/map",
         views: {
           'menuContent': {
@@ -85,7 +114,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         }
       })
 
+      .state('app.map-info', {
+        cache: false,
+        url: "/map-info",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/map-info.html",
+            controller: 'MapInfoCtrl as vm',
+          }
+        }
+      })
+
       .state('app.position-info', {
+        cache: false,
         url: "/position-info",
         views: {
           'menuContent': {
@@ -96,6 +137,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       })
 
       .state('app.accelerometer', {
+        cache: false,
         url: "/accelerometer",
         views: {
           'menuContent': {
@@ -106,6 +148,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       })
 
       .state('app.logs', {
+        cache: false,
         url: "/logs",
         views: {
           'menuContent': {
@@ -114,6 +157,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         }
       })
       .state('app.setup', {
+        cache: false,
         url: "/setup",
         views: {
           'menuContent': {
@@ -134,5 +178,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         }
       })*/;
     // if none of the above states are matched, use this as the fallback
+    //$urlRouterProvider.otherwise('/app/setup');
     $urlRouterProvider.otherwise('/app/map');
   });

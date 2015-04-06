@@ -1,9 +1,9 @@
-<ion-view view-title="Floor Map">
+<ion-view view-title="{{vm.map['Short Code']}}">
   <ion-content
           zooming="true"
           direction="xy">
-    <canvas id="mapCanvas" width="766" height="547"></canvas>
+    <canvas id="mapCanvas" width="{{vm.map['Width']}}px" height="{{vm.map['Height']}}px"></canvas>
   </ion-content>
 </ion-view>
 
-<img id="image" ng-src="{{vm.image}}" style="width: 766px; height: 547px;">
+<img id="image" ng-src="{{vm.image}}" style="width: {{vm.map['Width']}}px; height: {{vm.map['Height']}}px;">

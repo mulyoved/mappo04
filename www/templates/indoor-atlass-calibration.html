@@ -7,7 +7,7 @@
             <p>Wait for position Info, please move your phone</p>
         </div>
         <div ng-if="vm.gotLocation">
-            <p>Calibration Progress: {{vm.motion.calibration}}%</p>
+            <p>Calibration Progress: {{vm.motion.calibration / 100 | number:0}}%</p>
         </div>
     </ion-content>
 </ion-modal-view>
